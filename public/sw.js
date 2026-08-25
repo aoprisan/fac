@@ -1,4 +1,5 @@
-const CACHE = 'factura-v1';
+// Bump on every release, or the cache-first fetch below keeps serving the old app.js.
+const CACHE = 'factura-v2';
 const ASSETS = ['./', './index.html', './app.js', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {

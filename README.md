@@ -40,6 +40,9 @@ Once live:
 - **Defaults live in `defaults()` in `src/model.ts`.** Editing a field in the
   app also saves it as your new default; "Revino la valorile din fabrică"
   clears that and falls back to the code.
+- **The amount is never defaulted.** `Preț/buc` starts empty on every load, and
+  a saved template has its prices cleared on boot — same reasoning as the date
+  refresh: it is the one field that must be typed for each invoice.
 - **Invoice number** is a pattern (`OBSI-{YYYY}{MM}`) expanded from the invoice
   date. Type over it and it stops auto-updating.
 - **Scadent** = the 2nd of the month after the invoice date, recomputed whenever

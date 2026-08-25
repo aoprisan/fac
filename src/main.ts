@@ -169,7 +169,9 @@ function renderLines(body: HTMLElement) {
     const price = el('input');
     price.type = 'number';
     price.step = '0.01';
-    price.value = String(l.price);
+    // Blank, not "0": the amount is per-invoice, so it starts unfilled.
+    price.value = l.price ? String(l.price) : '';
+    price.placeholder = '0.00';
     price.addEventListener('input', () => {
       l.price = Number(price.value);
       onEdit();
@@ -277,7 +279,10 @@ async function boot() {
   const saved = await store.load<Invoice>();
   if (saved) inv = { ...defaults(), ...saved };
 
-  // A stored file is a template, not last month's invoice: refresh the dates.
+  // A stored file is a template, not last month's invoice: refresh the dates
+  // and drop the amounts, which are the one thing that must be typed each time.
+  inv.lines = (Array.isArray(inv.lines) && inv.lines.length ? inv.lines : defaults().lines)
+    .map((l) => ({ ...l, price: 0 }));
   inv.data = toISO(new Date());
   inv.dueDay = Number(inv.dueDay) || 2;
   inv.scadent = nextMonthDay(inv.data, inv.dueDay);

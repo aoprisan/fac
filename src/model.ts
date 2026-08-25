@@ -148,7 +148,7 @@ export function defaults(): Invoice {
       tel: '',
       web: 'eloquentix.com',
     },
-    lines: [{ desc: 'Dezvoltare software', qty: 1, price: 4000 }],
+    lines: [{ desc: 'Dezvoltare software', qty: 1, price: 0 }],
     issuer: {
       nume: 'Andrei',
       prenume: 'Oprisan',
