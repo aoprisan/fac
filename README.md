@@ -7,10 +7,24 @@ jsPDF for the PDF. Everything runs in the browser; nothing is uploaded anywhere.
 
     just build     # typecheck + bundle into dist/
     just serve     # http://localhost:4173
-    just deploy    # push dist/ to gh-pages
 
 All asset paths are relative, so it works from a repo subpath
-(`https://aoprisan.github.io/factura/`) without configuration.
+(`https://aoprisan.github.io/fac/`) without configuration.
+
+## Deploy
+
+Pushing to `main` runs `.github/workflows/deploy.yml`, which typechecks,
+builds, and publishes `dist/` to GitHub Pages. There is no `gh-pages`
+branch — the artifact goes straight from the build job to Pages.
+
+One-time repo setup: **Settings → Pages → Build and deployment → Source:
+GitHub Actions**. The workflow can also be run by hand from the Actions
+tab (`workflow_dispatch`).
+
+Once live:
+
+    https://aoprisan.github.io/fac/                          the PWA
+    https://aoprisan.github.io/fac/factura-standalone.html   single file, offline
 
 ## Files
 

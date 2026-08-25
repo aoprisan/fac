@@ -1,7 +1,7 @@
 default: build
 
 install:
-    npm install
+    npm ci
 
 build: install
     npx tsc --noEmit
@@ -11,9 +11,8 @@ build: install
 serve: build
     cd dist && python3 -m http.server 4173
 
-# Push dist/ to the gh-pages branch
-deploy: build
-    npx gh-pages -d dist
+# Deployment is automatic: push to main and .github/workflows/deploy.yml
+# publishes dist/ to GitHub Pages.
 
 clean:
     rm -rf dist node_modules
